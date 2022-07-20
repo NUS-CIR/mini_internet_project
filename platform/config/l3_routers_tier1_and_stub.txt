@@ -1,3 +1,3 @@
-ZURI    DNS host:miniinterneteth/d_host vtysh
-BASE    MATRIX_TARGET routinator:miniinterneteth/d_routinator  vtysh
-GENE	MATRIX host:miniinterneteth/d_host    vtysh
+ZURI    DNS host:khooi8913/d_host vtysh
+BASE    MATRIX_TARGET host:khooi8913/d_host  vtysh
+GENE	MATRIX host:khooi8913/d_host    vtysh
