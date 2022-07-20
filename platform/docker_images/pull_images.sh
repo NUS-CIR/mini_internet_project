@@ -10,7 +10,7 @@ images=(router ixp host ssh measurement dns switch matrix vpn vlc hostm krill ro
 
 # If you want to use your custom docker containers and upload them into
 # docker hub, change the docker username with your own docker username.
-docker_name=miniinterneteth
+docker_name=khooi8913
 
 for image in "${images[@]}"; do
     echo docker pull "${docker_name}/d_${image}"

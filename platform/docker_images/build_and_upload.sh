@@ -17,7 +17,7 @@ docker login
 
 # If you want to use your custom docker containers and upload them into
 # docker hub, change the docker username with your own docker username.
-docker_name=miniinterneteth
+docker_name=khooi8913
 
 # Upload all images to docker hub except the first two (base images).
 for image in "${images[@]:2}"; do
