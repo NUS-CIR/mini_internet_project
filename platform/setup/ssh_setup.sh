@@ -55,11 +55,20 @@ for ((k=0;k<group_numbers;k++)); do
         ssh-keygen -t rsa -b 4096 -C "internal key group ${group_number}" -P "" -f "groups/g"${group_number}"/id_rsa" -q
         echo 'command="vtysh \"${SSH_ORIGINAL_COMMAND}\"" '$(cat "${DIRECTORY}"/groups/g"${group_number}"/id_rsa.pub) > "${DIRECTORY}"/groups/g"${group_number}"/id_rsa_command.pub
 
+        # generate key pair for login to ssh container, save it to groups/keys folder
+        ssh-keygen -t rsa -b 4096 -C "${HOSTNAME} group ${group_number}" -P "" -f "groups/keys/g"${group_number}"" -q
+
         # copy private key to container and change access rights
         docker cp "${DIRECTORY}"/groups/g"${group_number}"/id_rsa "${group_number}"_ssh:/root/.ssh/id_rsa
         docker cp "${DIRECTORY}"/groups/g"${group_number}"/id_rsa.pub "${group_number}"_ssh:/root/.ssh/id_rsa.pub
         docker cp "${DIRECTORY}"/groups/authorized_keys "${group_number}"_ssh:/root/.ssh/authorized_keys
         docker cp "${DIRECTORY}"/groups/authorized_keys "${group_number}"_ssh:/etc/ssh/authorized_keys
+
+        # copy login key to container and add to authorized keys
+        docker cp "${DIRECTORY}"/groups/keys/g"${group_number}".pub "${group_number}"_ssh:/root/.ssh/g"${group_number}".pub
+        docker cp "${DIRECTORY}"/groups/keys/g"${group_number}".pub "${group_number}"_ssh:/etc/ssh/g"${group_number}".pub
+        docker exec ${group_number}_ssh bash -c "cat /root/.ssh/g"${group_number}".pub >> /root/.ssh/authorized_keys"
+        docker exec ${group_number}_ssh bash -c "cat /etc/ssh/g"${group_number}".pub >> /etc/ssh/authorized_keys"
 
         # generate password for login to ssh container, save it to group folder
         passwd=$(awk "\$1 == \"${group_number}\" { print \$2 }" "${DIRECTORY}/groups/passwords.txt")

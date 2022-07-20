@@ -17,6 +17,9 @@ group_numbers=${#groups[@]}
 
 mkdir "${DIRECTORY}"/groups
 
+# folder to store rsa keys
+mkdir "${DIRECTORY}"/groups/keys
+
 for ((k=0;k<group_numbers;k++)); do
     group_k=(${groups[$k]})
     group_number="${group_k[0]}"
