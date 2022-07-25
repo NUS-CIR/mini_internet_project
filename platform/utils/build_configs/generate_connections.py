@@ -5,7 +5,7 @@ import string
 # Pick the size of the topology that you want.
 # The Topology will always follow the same pattern, with different regions, Tier1, Stub and transit.
 # Two ASes in every raw in a region. One central IXP and one between each neighboring region.
-NB_ASES = 12
+NB_ASES = 84
 
 if NB_ASES == 12:
     # 12 ASes
