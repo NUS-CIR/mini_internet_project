@@ -152,8 +152,8 @@ while True:
                 cmd = "nping --dest-mac "+mac_dic[from_g]+" --source-ip "+str(from_g)+".0.198.2 --dest-ip "+str(as_list[to_g])+" --interface group_"+str(from_g)+" -c 1 --tcp --delay 250ms"
                 print (cmd)
                 proc_dic[from_g][to_g] = Popen(shlex.split(cmd), stdout=PIPE, text=True)
-                print ('sleep ', (113-from_g)*0.001)
-                time.sleep((113-from_g)*0.001)
+                print ('sleep ', (114-from_g)*0.001)
+                time.sleep((114-from_g)*0.001)
 
         for to_g in proc_dic[from_g]:
 
