@@ -2,7 +2,7 @@
 'connectivity_matrix': 'matrix',
 'looking_glass': 'looking glass',
 'as_connections': 'connections',
-'krill': 'krill',
+<!-- 'krill': 'krill', -->
 } -%}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Routing Project - {{ navigation_bar.get(request.endpoint, request.endpoint)|replace('_', " ")|title }}
+    <!-- <title>Routing Project - {{ navigation_bar.get(request.endpoint, request.endpoint)|replace('_', " ")|title }} -->
+    <title>Mini Internet - {{ navigation_bar.get(request.endpoint, request.endpoint)|replace('_', " ")|title }}
     </title>
     {% endblock %}
 </head>
@@ -29,7 +30,8 @@
             <div class="flex items-center flex-shrink-0 mr-6 text-3xl font-bold">
                 <img class=" h-16 pr-4" alt="logo" src="{{url_for('static', filename='logo.svg')}}" />
                 <!-- <span class="text-gray-400 pr-2">></span> -->
-                <span>routing project</span>
+                <!-- <span>routing project</span> -->
+                <span>mini internet project</span>
             </div>
             <!-- Menu -->
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"></div>
