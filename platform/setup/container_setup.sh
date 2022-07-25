@@ -80,7 +80,7 @@ for ((k=0;k<group_numbers;k++)); do
                 sname="${switch_l[1]}"
 
                 docker run -itd --net='none' --dns="${subnet_dns%/*}" --cap-add=NET_ADMIN \
-                    --cpus=2 --pids-limit 256 --hostname "${sname}" \
+                    --cpus=1 --pids-limit 256 --hostname "${sname}" \
                     --name=${group_number}_L2_${l2name}_${sname} \
                     --cap-add=ALL \
                     --cap-drop=SYS_RESOURCE \
@@ -111,7 +111,7 @@ for ((k=0;k<group_numbers;k++)); do
 
                 if [[ $hname != vpn* ]]; then
                     docker run -itd --net='none' --dns="${subnet_dns%/*}" --cap-add=NET_ADMIN \
-                        --cpus=2 --pids-limit 100 --hostname "${hname}" \
+                        --cpus=1 --pids-limit 100 --hostname "${hname}" \
                         --name="${group_number}""_L2_""${l2name}""_""${hname}" \
                         --sysctl net.ipv4.icmp_ratelimit=0 \
                         --sysctl net.ipv4.icmp_echo_ignore_broadcasts=0 \
@@ -153,7 +153,7 @@ for ((k=0;k<group_numbers;k++)); do
                     --sysctl net.mpls.platform_labels=1048575 \
                     --cap-add=ALL \
                     --cap-drop=SYS_RESOURCE \
-                    --cpus=2 --pids-limit 100 --hostname "${rname}""_router" \
+                    --cpus=1 --pids-limit 100 --hostname "${rname}""_router" \
                     -v "${location}"/looking_glass.txt:/home/looking_glass.txt \
                     -v "${location}"/looking_glass_json.txt:/home/looking_glass_json.txt \
                     -v "${location}"/daemons:/etc/frr/daemons \
@@ -200,7 +200,7 @@ for ((k=0;k<group_numbers;k++)); do
 
                     docker run -itd --network "$net" --dns="${subnet_dns%/*}"  \
                         --name="${container_name}" --cap-add=NET_ADMIN \
-                        --cpus=2 --pids-limit 100 --hostname "${rname}""_host" \
+                        --cpus=1 --pids-limit 100 --hostname "${rname}""_host" \
                         --sysctl net.ipv4.icmp_ratelimit=0 \
                         --sysctl net.ipv4.icmp_echo_ignore_broadcasts=0 \
                         --sysctl net.ipv6.conf.all.disable_ipv6=0 \
