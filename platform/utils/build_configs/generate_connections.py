@@ -76,28 +76,28 @@ elif NB_ASES == 84:
 # Description of the routers used for every connection.
 # We differentiate between Transit, Tier1 and Stub ASes
 transit_as_topo = {
-    'provider1': 'LYON',
-    'provider2': 'MILA',
-    'customer1': 'MUNI',
-    'customer2': 'BASE',
-    'peer': 'LUGA',
-    'ixp': 'VIEN'
+    'provider1': 'JURONG',
+    'provider2': 'MARINA',
+    'customer1': 'KRANJI',
+    'customer2': 'BTIMAH',
+    'peer': 'NOVENA',
+    'ixp': 'CHANGI'
 }
 
 tier1_topo = {
-    'ixp_central': 'ZURI',
-    'ixp_out': 'BASE',
-    'peer1': 'ZURI',
-    'peer2': 'ZURI',
-    'provider1': 'ZURI',
-    'provider2': 'ZURI' 
+    'ixp_central': 'BISHAN',
+    'ixp_out': 'BTIMAH',
+    'peer1': 'BISHAN',
+    'peer2': 'BISHAN',
+    'provider1': 'BISHAN',
+    'provider2': 'BISHAN' 
 }
 
 stub_topo = {
-    'ixp': 'BASE',
-    'peer': 'ZURI',
-    'customer1': 'ZURI',
-    'customer2': 'ZURI' 
+    'ixp': 'BTIMAH',
+    'peer': 'BISHAN',
+    'customer1': 'BISHAN',
+    'customer2': 'BISHAN' 
 }
 
 all_tier1 = list(map(lambda x:str(x), sum(tier1, [])))
