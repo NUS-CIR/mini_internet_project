@@ -4,15 +4,17 @@ import random
 import requests
 import subprocess
 import argparse
+import os
 
 def send_notification(title, content, group_nb):
-    url = "https://hooks.slack.com/services/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"
+    #url = "https://hooks.slack.com/services/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"
+    url = os.environ['PROCMON_WEBHOOK']
     message = (content)
     title = (":male-detective: Group {}: {} :zap:".format(group_nb, title))
     slack_data = {
         "username": "Mini-Internet Robot",
         "icon_emoji": ":male-detective:",
-        #"channel" : "#somerandomcahnnel",
+        "channel" : "#mini-internet-ops",
         "attachments": [
             {
                 "color": "#9733EE",
@@ -26,7 +28,7 @@ def send_notification(title, content, group_nb):
             }
         ]
     }
-    byte_length = len(json.dumps(slack_data))
+    byte_length = str(len(json.dumps(slack_data)))
     headers = {'Content-Type': "application/json", 'Content-Length': byte_length}
     response = requests.post(url, data=json.dumps(slack_data), headers=headers)
     if response.status_code != 200:
@@ -40,7 +42,7 @@ if __name__ == '__main__':
     nb_proc_threshold = int(args.nb_proc_threshold)
 
     # Get the list of running SSH container
-    ps = subprocess.run(['docker', 'ps', '--format', '{{.ID}},{{.Names}}', '--filter', 'ancestor=miniinterneteth/d_ssh'], capture_output=True)
+    ps = subprocess.run(['docker', 'ps', '--format', '{{.ID}},{{.Names}}', '--filter', 'ancestor=khooi8913/d_ssh'], capture_output=True)
     ps.check_returncode()
 
     cid2group = {} # Container ID to group
@@ -88,7 +90,7 @@ if __name__ == '__main__':
     for cid, nb_proc in groups.items():
         if nb_proc >= nb_proc_threshold:
             print ('send_notification: {} nb_proc: {}'.format(cid2group[cid], nb_proc))
-            send_notification("Warning SSH container", '<@U01LPJ0PPPW>: There are {} processes running in your SSH container.\nThis is too high, please fix this.'.format(nb_proc), cid2group[cid])
+            send_notification("Warning SSH container", 'There are {} processes running in your SSH container.\nThis is too high, please fix this.'.format(nb_proc), cid2group[cid])
 
         
 

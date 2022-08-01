@@ -2,10 +2,12 @@ import requests
 import urllib.request
 import json
 import time
+import os
 
 # This function sends a notification to the routing_project channel that indicates the connectivity score.
 def send_notification(content):
-    url = "https://hooks.slack.com/services/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"
+    url = os.environ['MATRIX_WEBHOOK']
+    #url = "https://hooks.slack.com/services/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"
     title = (":male-detective: Daily report")
     slack_data = {
         "username": "Mini-Internet Robot",
@@ -33,7 +35,7 @@ def send_notification(content):
 while True:
 
     # Reads the raw matrix
-    fp = urllib.request.urlopen("https://duvel.ethz.ch/matrix?raw")
+    fp = urllib.request.urlopen("http://ocna0.d2.comp.nus.edu.sg/matrix?raw")
     mybytes = fp.read()
 
     matrix_source = mybytes.decode("utf8")
