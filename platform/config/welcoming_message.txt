@@ -7,6 +7,6 @@
 |   From here, you can access your virtual devices    |
 |   with the goto.sh script. For instance:            |
 |                                                     |
-|   ./goto.sh ZURI router                             |
+|   ./goto.sh BISHAN router                           |
 |                                                     |
 +-----------------------------------------------------+

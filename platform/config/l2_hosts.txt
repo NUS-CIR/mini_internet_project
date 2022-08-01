@@ -1,8 +1,8 @@
-FIFA_1   khooi8913/d_host DCN   S1    10000   1000    10
-UEFA_1   khooi8913/d_host DCN   S1    10000   1000    20
-FIFA_2   khooi8913/d_host DCN   S2    10000   1000    10
-UEFA_2   khooi8913/d_host DCN   S2    10000   1000    20
-FIFA_3   khooi8913/d_host DCN   S3    10000   1000    10
-UEFA_3   khooi8913/d_host DCN   S3    10000   1000    20
-FIFA_4   khooi8913/d_host DCS   S4    10000   1000    10
-UEFA_4   khooi8913/d_host DCS   S4    10000   1000    20
+MOE_1   khooi8913/d_host DCN   S1    10000   1000    10
+MOH_1   khooi8913/d_host DCN   S1    10000   1000    20
+MOE_2   khooi8913/d_host DCN   S2    10000   1000    10
+MOH_2   khooi8913/d_host DCN   S2    10000   1000    20
+MOE_3   khooi8913/d_host DCN   S3    10000   1000    10
+MOH_3   khooi8913/d_host DCN   S3    10000   1000    20
+MOE_4   khooi8913/d_host DCS   S4    10000   1000    10
+MOH_4   khooi8913/d_host DCS   S4    10000   1000    20
