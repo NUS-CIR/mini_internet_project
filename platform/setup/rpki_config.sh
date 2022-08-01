@@ -58,7 +58,7 @@ for ((j=0;j<n_groups;j++)); do
         group_as="${group_j[1]}"
 
         if [ "${group_as}" != "IXP" ]; then
-            passwd="$(openssl rand -hex 8)"
+            passwd="$(openssl rand -hex 16)"
             echo "${group_number} ${passwd}" >> "${DIRECTORY}"/groups/passwords.txt
         fi
     ) &
@@ -72,7 +72,7 @@ ssh-keygen -t rsa -b 4096 -C "krill webserver" -P "" -f "${DIRECTORY}"/groups/rp
 wait
 
 for role in "readonly" "admin"; do
-    passwd="$(openssl rand -hex 8)"
+    passwd="$(openssl rand -hex 16)"
     echo "${role} ${passwd}" >> "${DIRECTORY}"/groups/krill_passwords.txt
 done
 

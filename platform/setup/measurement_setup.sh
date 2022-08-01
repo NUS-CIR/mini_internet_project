@@ -50,7 +50,7 @@ else
     DOCKER_TO_PID['MEASUREMENT']=$(docker inspect -f '{{.State.Pid}}' MEASUREMENT)
     declare -p DOCKER_TO_PID > ${DIRECTORY}/groups/docker_pid.map
 
-    passwd="$(openssl rand -hex 8)"
+    passwd="$(openssl rand -hex 16)"
     echo "${passwd}" >> "${DIRECTORY}"/groups/ssh_measurement.txt
     echo -e ""${passwd}"\n"${passwd}"" | docker exec -i MEASUREMENT passwd root
 
