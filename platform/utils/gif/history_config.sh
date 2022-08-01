@@ -2,12 +2,17 @@
 
 # This script pushes in a git repositery the config files of all the routers
 # as well as the matrix images and the gif.
+# Usage: ./history_config.sh (no need sudo)
 
 # location of the git directory.
-USERNAME=thomas
-PLATFORM_DIR=/home/thomas/mini_internet_project/platform/
-GITADDR=git@gitlab.ethz.ch:nsg/lectures/lec_commnet/projects/2022/routing_project/configs_and_matrix_history_2
-GITDIR=/home/thomas/configs_and_matrix_history
+#USERNAME=thomas
+#PLATFORM_DIR=/home/thomas/mini_internet_project/platform/
+#GITADDR=git@gitlab.ethz.ch:nsg/lectures/lec_commnet/projects/2022/routing_project/configs_and_matrix_history_2
+#GITDIR=/home/thomas/configs_and_matrix_history
+USERNAME=xzk
+PLATFORM_DIR=/home/xzk/mini_internet_project/platform/
+GITADDR=git@github.com:NUS-CIR/cs3103-2022-mini-internet-configs.git
+GITDIR=/home/xzk/cs3103-2022-mini-internet-configs
 rm -rf $GITDIR
 
 # Clone the git repository
@@ -41,8 +46,8 @@ copy_config () {
         router_i=(${routers[$i]})
         rname="${router_i[0]}"
 
-        cp $PLATFORM_DIR/groups/g$group_number/$rname/frr.conf $GITDIR/g$group_number/$rname.txt
-        chown $USERNAME:$USERNAME $GITDIR/g$group_number/$rname.txt
+        sudo cp $PLATFORM_DIR/groups/g$group_number/$rname/frr.conf $GITDIR/g$group_number/$rname.txt
+        sudo chown $USERNAME:$USERNAME $GITDIR/g$group_number/$rname.txt
         sudo -H -u $USERNAME git -C $GITDIR add g$group_number/$rname.txt
     done
 }
@@ -69,7 +74,8 @@ do
 
     # Copy matrix source.
     d=$(date +'%m_%d_%Y-%Hh%Mm%Ss')
-    wget -O $GITDIR/matrix/matrix_source_$d.json https://duvel.ethz.ch/matrix?raw 
+    #wget -O $GITDIR/matrix/matrix_source_$d.json https://duvel.ethz.ch/matrix?raw 
+    wget -O $GITDIR/matrix/matrix_source_$d.json http://ocna0.d2.comp.nus.edu.sg/matrix?raw 
     chown $USERNAME:$USERNAME $GITDIR/matrix/matrix_source_$d.json
     sudo -H -u $USERNAME git -C $GITDIR add $GITDIR/matrix/matrix_source_$d.json
 
@@ -86,8 +92,8 @@ do
     sudo -H -u $USERNAME git -C $GITDIR add $GITDIR/images/$d.html
 
     # Commit and push.
-    sudo -H -u thomas git -C $GITDIR commit -m "Config $d"
-    sudo -H -u thomas git -C $GITDIR push
+    sudo -H -u $USERNAME git -C $GITDIR commit -m "Config $d"
+    sudo -H -u $USERNAME git -C $GITDIR push
 
     sleep 600
 done
