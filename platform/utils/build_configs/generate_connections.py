@@ -314,10 +314,12 @@ all_ixp.append(ixp_central)
 with open('AS_config.txt', 'w') as fd:
     for asn in all_tier1+all_stub:
         # By default we set krill in AS1
-        if asn == '1':
-            fd.write(str(asn)+'\tAS\tConfig\tl3_routers_krill.txt\tl3_links_krill.txt\tempty.txt\tempty.txt\tempty.txt\n')
-        else:
-            fd.write(str(asn)+'\tAS\tConfig\tl3_routers_tier1_and_stub.txt\tl3_links_tier1_and_stub.txt\tempty.txt\tempty.txt\tempty.txt\n')
+        #if asn == '1':
+        #    fd.write(str(asn)+'\tAS\tConfig\tl3_routers_krill.txt\tl3_links_krill.txt\tempty.txt\tempty.txt\tempty.txt\n')
+        #else:
+        #    fd.write(str(asn)+'\tAS\tConfig\tl3_routers_tier1_and_stub.txt\tl3_links_tier1_and_stub.txt\tempty.txt\tempty.txt\tempty.txt\n')
+        # No krill
+        fd.write(str(asn)+'\tAS\tConfig\tl3_routers_tier1_and_stub.txt\tl3_links_tier1_and_stub.txt\tempty.txt\tempty.txt\tempty.txt\n')
 
     for asn in all_transit:
         fd.write(str(asn)+'\tAS\tConfig\tl3_routers.txt\tl3_links.txt\tl2_switches.txt\tl2_hosts.txt\tl2_links.txt\n')
