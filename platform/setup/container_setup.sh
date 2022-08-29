@@ -80,7 +80,7 @@ for ((k=0;k<group_numbers;k++)); do
                 sname="${switch_l[1]}"
 
                 docker run -itd --net='none' --dns="${subnet_dns%/*}" --cap-add=NET_ADMIN \
-                    --cpus=1 --pids-limit 256 --hostname "${sname}" \
+                    --cpus=1 --pids-limit 1024 --hostname "${sname}" \
                     --name=${group_number}_L2_${l2name}_${sname} \
                     --cap-add=ALL \
                     --cap-drop=SYS_RESOURCE \
@@ -97,7 +97,7 @@ for ((k=0;k<group_numbers;k++)); do
                     -v /etc/timezone:/etc/timezone:ro \
                     -v /etc/localtime:/etc/localtime:ro \
                     "${DOCKERHUB_USER}/d_switch"
-
+                echo ${group_number}_L2_${l2name}_${sname}
                 CONTAINERS+=(${group_number}_L2_${l2name}_${sname})
             done
 
@@ -219,7 +219,7 @@ for ((k=0;k<group_numbers;k++)); do
 
             location="${DIRECTORY}"/groups/g"${group_number}"
             docker run -itd --net='none' --name="${group_number}""_IXP" \
-                --pids-limit 100 --hostname "${group_number}""_IXP" \
+                --pids-limit 200 --hostname "${group_number}""_IXP" \
                 -v "${location}"/daemons:/etc/quagga/daemons \
                 --privileged \
                 --sysctl net.ipv4.ip_forward=1 \
